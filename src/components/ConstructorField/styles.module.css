@@ -1,0 +1,21 @@
+.container {
+  position: relative;
+  border: 2px dashed #c4c4c4;
+  border-radius: 6px;
+  background-color: #fff;
+  transition: background-color 0.2s;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.dropzone {
+  flex-grow: 1;
+}
+
+.active {
+  background-color: #f0f9ff;
+}

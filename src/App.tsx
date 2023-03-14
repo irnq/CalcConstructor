@@ -1,56 +1,52 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
+import React, { useState } from 'react';
 import './App.css';
+import cn from 'classnames';
+import { ConstructorField } from './components/ConstructorField/ConstructorField';
+import { ItemBar } from './components/ItemBar/ItemBar';
+import { ModeSwitcher } from './components/ModeSwitcher/ModeSwitcher';
+import { OPTIONS } from './constants/modeOptions';
+import { Mode } from './constants/modeOptions';
+import { useAppDispatch, useAppSelector } from './store/hooks';
+import { setMode } from './store/slices/draggableSlice';
+import { getMode } from './store/selectors';
+import { resetCalcState } from './store/slices/calcSlices';
 
 function App() {
+  const dispatch = useAppDispatch();
+  const mode = useAppSelector(getMode);
+  const [dropzoneActive, setDropzoneActive] = useState(false);
+
+  const handleChangeMode = (value: number) => {
+    dispatch(setMode(value));
+    dispatch(resetCalcState());
+  };
+
+  const changeDropzoneBg = () => {
+    setDropzoneActive((prevValue) => !prevValue);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
+    <div className='App'>
+      <ModeSwitcher
+        options={OPTIONS}
+        defaultValue={Mode.constructor}
+        className='align-right'
+        onChange={handleChangeMode}
+      />
+      <div className='container'>
+        <ItemBar
+          className={cn('bar')}
+          hidden={mode === Mode.runtime}
+          onDragStart={changeDropzoneBg}
+          onDragEnd={changeDropzoneBg}
+        />
+        <ConstructorField
+          className={cn('bar', 'align-right')}
+          isDropzoneActive={dropzoneActive}
+          onDragStart={changeDropzoneBg}
+          onDragEnd={changeDropzoneBg}
+        />
+      </div>
     </div>
   );
 }

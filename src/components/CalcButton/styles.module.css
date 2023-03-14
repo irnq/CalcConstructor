@@ -1,0 +1,31 @@
+.btn {
+  width: 100%;
+  font-weight: 500;
+  font-size: 1.4rem;
+  line-height: 4.6rem;
+  text-align: center;
+  color: #000;
+  background: #fff;
+  border: 1px solid #e2e3e5;
+  outline: 1px solid transparent;
+  border-radius: 6px;
+  vertical-align: middle;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+
+.btn:hover,
+.btn:focus {
+  border: 1px solid #5d5fef;
+}
+
+.btn:active {
+  border: 1px solid #5d5fef;
+  outline: 1px solid #5d5fef;
+}
+
+.primary {
+  background-color: #5d5fef;
+  border: 1px solid transparent;
+  color: #fff;
+}

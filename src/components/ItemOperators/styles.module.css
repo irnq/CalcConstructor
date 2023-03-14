@@ -1,0 +1,5 @@
+.operators {
+  display: flex;
+  gap: 0.8rem;
+  background-color: #fff;
+}

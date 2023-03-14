@@ -1,0 +1,7 @@
+.switcher {
+  display: flex;
+  width: min-content;
+  border-radius: 6px;
+  background-color: #f3f4f6;
+  padding: 1px;
+}

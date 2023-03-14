@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  background: #fff;
+}
+
+.row {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.rowBasic {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.rowLongZero {
+  grid-template-columns: 2fr 1fr;
+}
+
+.grid {
+  display: grid;
+  gap: 0.8rem;
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.twoColumn {
+  grid-column: 1 / 3;
+}
